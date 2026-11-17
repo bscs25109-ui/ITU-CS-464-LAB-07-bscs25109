@@ -6,6 +6,7 @@ public class SafeArea : MonoBehaviour
     void Start()
     {
         RectTransform r = (RectTransform)transform;
+
         Rect s = Screen.safeArea;
 
         r.anchorMin = new Vector2(

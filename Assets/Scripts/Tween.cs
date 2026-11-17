@@ -5,21 +5,32 @@ using UnityEngine;
 
 public static class Ease
 {
-    public static float Linear(float t) => t;
+    public static float Linear(float t)
+    {
+        return t;
+    }
 
     public static float OutQuad(float t)
-        => 1f - (1f - t) * (1f - t);
+    {
+        return 1f - (1f - t) * (1f - t);
+    }
 
     public static float InCubic(float t)
-        => t * t * t;
+    {
+        return t * t * t;
+    }
 
     public static float OutCubic(float t)
-        => 1f - Mathf.Pow(1f - t, 3f);
+    {
+        return 1f - Mathf.Pow(1f - t, 3f);
+    }
 
     public static float InOutQuad(float t)
-        => t < 0.5f
-        ? 2f * t * t
-        : 1f - Mathf.Pow(-2f * t + 2f, 2f) / 2f;
+    {
+        return t < 0.5f
+            ? 2f * t * t
+            : 1f - Mathf.Pow(-2f * t + 2f, 2f) / 2f;
+    }
 
     public static float OutBack(float t)
     {
@@ -27,7 +38,7 @@ public static class Ease
         const float c3 = c1 + 1f;
 
         return 1f + c3 * Mathf.Pow(t - 1f, 3f)
-                   + c1 * Mathf.Pow(t - 1f, 2f);
+            + c1 * Mathf.Pow(t - 1f, 2f);
     }
 }
 
@@ -100,11 +111,15 @@ public static class Tween
     {
         float from = g.alpha;
 
-        return Run(host, duration, ease,
+        return Run(
+            host,
+            duration,
+            ease,
             t => g.alpha = Mathf.Clamp01(
                 Mathf.LerpUnclamped(from, to, t)
             ),
-            done, delay
+            done,
+            delay
         );
     }
 
@@ -120,10 +135,15 @@ public static class Tween
         Vector3 from = tr.localScale;
         Vector3 end = Vector3.one * to;
 
-        return Run(host, duration, ease,
-            t => tr.localScale =
-                Vector3.LerpUnclamped(from, end, t),
-            done, delay
+        return Run(
+            host,
+            duration,
+            ease,
+            t => tr.localScale = Vector3.LerpUnclamped(
+                from, end, t
+            ),
+            done,
+            delay
         );
     }
 
@@ -143,13 +163,20 @@ public static class Tween
         g.alpha = 0f;
         rt.anchoredPosition = start;
 
-        return Run(host, duration, ease, t =>
-        {
-            g.alpha = Mathf.Clamp01(t);
+        return Run(
+            host,
+            duration,
+            ease,
+            t =>
+            {
+                g.alpha = Mathf.Clamp01(t);
 
-            rt.anchoredPosition =
-                Vector2.LerpUnclamped(start, end, t);
-        }, null, delay);
+                rt.anchoredPosition =
+                    Vector2.LerpUnclamped(start, end, t);
+            },
+            null,
+            delay
+        );
     }
 
     public static Coroutine Punch(
@@ -158,9 +185,12 @@ public static class Tween
         float amount = 0.2f,
         float duration = 0.25f)
     {
-        return Run(host, duration, Ease.Linear,
-            t => tr.localScale =
-                Vector3.one * (1f + amount * Mathf.Sin(t * Mathf.PI))
+        return Run(
+            host,
+            duration,
+            Ease.Linear,
+            t => tr.localScale = Vector3.one *
+                (1f + amount * Mathf.Sin(t * Mathf.PI))
         );
     }
 }

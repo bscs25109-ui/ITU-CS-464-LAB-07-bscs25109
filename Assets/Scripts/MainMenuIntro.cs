@@ -5,6 +5,7 @@ public class MainMenuIntro : MonoBehaviour
 {
     [SerializeField] RectTransform title;
     [SerializeField] RectTransform subtitle;
+
     [SerializeField] RectTransform[] buttons;
 
     static bool played;
@@ -12,22 +13,26 @@ public class MainMenuIntro : MonoBehaviour
     void OnEnable()
     {
         if (played)
-        {
             return;
-        }
 
         played = true;
 
         Tween.Reveal(
-            this, title,
+            this,
+            title,
             new Vector2(0, 60),
-            0.45f, 0.00f, Ease.OutCubic
+            0.45f,
+            0f,
+            Ease.OutCubic
         );
 
         Tween.Reveal(
-            this, subtitle,
+            this,
+            subtitle,
             new Vector2(0, 60),
-            0.45f, 0.10f, Ease.OutCubic
+            0.45f,
+            0.10f,
+            Ease.OutCubic
         );
 
         for (int i = 0; i < buttons.Length; i++)

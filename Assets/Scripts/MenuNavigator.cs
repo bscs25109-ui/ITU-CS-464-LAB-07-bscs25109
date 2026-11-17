@@ -6,11 +6,13 @@ using UnityEngine.EventSystems;
 public class MenuNavigator : MonoBehaviour
 {
     [SerializeField] GameObject[] screens;
+
     [SerializeField] GameObject[] firstButtons;
 
     readonly Stack<int> history = new Stack<int>();
 
     int current = -1;
+
     Coroutine running;
 
     void Start()
@@ -20,7 +22,14 @@ public class MenuNavigator : MonoBehaviour
 
     public void Go(int index)
     {
+        if (index < 0 || index >= screens.Length)
+            return;
+
+        if (current == index)
+            return;
+
         history.Push(current);
+
         Show(index, +1);
     }
 
@@ -37,7 +46,6 @@ public class MenuNavigator : MonoBehaviour
         if (running != null)
         {
             StopCoroutine(running);
-            running = null;
         }
 
         for (int i = 0; i < screens.Length; i++)
@@ -50,6 +58,7 @@ public class MenuNavigator : MonoBehaviour
         GameObject s = screens[index];
 
         CanvasGroup cg = Tween.Group(s.transform);
+
         RectTransform rt = (RectTransform)s.transform;
 
         if (direction == 0)
@@ -73,28 +82,29 @@ public class MenuNavigator : MonoBehaviour
 
         float startX = 120f * direction;
 
-        running = Tween.Run(this, 0.30f, Ease.OutCubic, t =>
-        {
-            cg.alpha = Mathf.Clamp01(t);
+        running = Tween.Run(
+            this,
+            0.30f,
+            Ease.OutCubic,
+            t =>
+            {
+                cg.alpha = Mathf.Clamp01(t);
 
-            rt.anchoredPosition =
-                new Vector2(
+                rt.anchoredPosition = new Vector2(
                     Mathf.LerpUnclamped(startX, 0f, t),
                     0f
                 );
+            },
+            () =>
+            {
+                cg.interactable = true;
+                cg.blocksRaycasts = true;
 
-        },
-        () =>
-        {
-            cg.interactable = true;
-            cg.blocksRaycasts = true;
-
-            EventSystem.current.SetSelectedGameObject(
-                firstButtons[index]
-            );
-
-            running = null;
-        });
+                EventSystem.current.SetSelectedGameObject(
+                    firstButtons[index]
+                );
+            }
+        );
     }
 
     void Update()

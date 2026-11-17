@@ -5,11 +5,18 @@ using UnityEngine.EventSystems;
 public class ButtonFeedback : MonoBehaviour,
     IPointerDownHandler,
     IPointerUpHandler,
-    IPointerExitHandler
+    IPointerExitHandler,
+    ISelectHandler,
+    IDeselectHandler
 {
+    [SerializeField] GameObject selectFrame;
+
     Coroutine c;
 
-    void Go(float to, float d, System.Func<float, float> e)
+    void Go(
+        float to,
+        float d,
+        System.Func<float, float> e)
     {
         if (c != null)
         {
@@ -34,8 +41,29 @@ public class ButtonFeedback : MonoBehaviour,
         Go(1f, 0.10f, Ease.OutQuad);
     }
 
+    public void OnSelect(BaseEventData _)
+    {
+        if (selectFrame)
+        {
+            selectFrame.SetActive(true);
+        }
+    }
+
+    public void OnDeselect(BaseEventData _)
+    {
+        if (selectFrame)
+        {
+            selectFrame.SetActive(false);
+        }
+    }
+
     void OnDisable()
     {
         transform.localScale = Vector3.one;
+
+        if (selectFrame)
+        {
+            selectFrame.SetActive(false);
+        }
     }
 }
