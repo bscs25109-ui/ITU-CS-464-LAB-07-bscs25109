@@ -6544,13 +6544,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 507557644}
+  - component: {fileID: 507557645}
   m_Layer: 5
   m_Name: Screen_Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &507557644
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6577,6 +6578,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &507557645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507557643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa1f87a3daf77946ad079e159c12294, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MapScreen
+  info: {fileID: 1544960147}
+  markers:
+  - {fileID: 1648559838}
+  - {fileID: 1254814544}
+  - {fileID: 1010547188}
+  missionNames:
+  - Abandoned Gas Station
+  - Quiet Suburb
+  - Dead Hospital
 --- !u!1 &547492913
 GameObject:
   m_ObjectHideFlags: 0
@@ -16809,7 +16831,7 @@ MonoBehaviour:
   - {fileID: 1933964386}
   - {fileID: 1498808882}
   - {fileID: 1821158956}
-  - {fileID: 0}
+  - {fileID: 1254814543}
   - {fileID: 0}
 --- !u!1 &1370394582
 GameObject:
@@ -18688,7 +18710,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1577833565
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19951,27 +19973,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5094970618535719297, guid: d88931a73ca20844fa36ff4482f6a8ed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5094970618535719297, guid: d88931a73ca20844fa36ff4482f6a8ed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1330215213}
+      objectReference: {fileID: 507557645}
     - target: {fileID: 5094970618535719297, guid: d88931a73ca20844fa36ff4482f6a8ed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5094970618535719297, guid: d88931a73ca20844fa36ff4482f6a8ed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Equip
+      value: Select
       objectReference: {fileID: 0}
     - target: {fileID: 5094970618535719297, guid: d88931a73ca20844fa36ff4482f6a8ed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: WeaponScreen, Assembly-CSharp
+      value: MapScreen, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5094970618535719297, guid: d88931a73ca20844fa36ff4482f6a8ed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5094970618535719297, guid: d88931a73ca20844fa36ff4482f6a8ed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
