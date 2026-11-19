@@ -4,7 +4,7 @@
 
 A zombie-survival mobile game menu system with **10 connected, working screens**. Inspired by *The Walking Zombie 2* (mobile). No colours, art or assets were copied; the visual identity is original.
 
-- **Demo video:** TODO paste your video link
+- **Demo video:** (https://drive.google.com/file/d/1zK70Q46Iip2gh8FfwUS2DcqkItHeJl6I/view?usp=sharing)
 - **Windows build (download and play):** (https://github.com/bscs25109-ui/ITU-CS-464-LAB-07-bscs25109/releases/download/v1.0/ITU-CS-464-LAB-07-bscs25109-Windows.zip)
 
 ## Screen flow
