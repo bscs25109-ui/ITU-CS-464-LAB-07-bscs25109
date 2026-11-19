@@ -7,4 +7,5 @@ public static class GameSession
     public static float Volume = 0.8f;
 
     public static string Difficulty = "Normal";
+    public static bool Music = true;
 }
