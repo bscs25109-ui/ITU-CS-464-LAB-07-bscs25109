@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OverScreen : MonoBehaviour
 {
-    [SerializeField] TMP_Text title, scoreText, iconText;
+    [SerializeField] TMP_Text title, scoreText, iconText, hintText;
     [SerializeField] CanvasGroup dim, panelGroup;
     [SerializeField] RectTransform panel;
 
@@ -20,6 +20,8 @@ public class OverScreen : MonoBehaviour
         title.color = victory ? Teal : Alert;
         iconText.text = victory ? "OK" : "X";
         iconText.color = title.color;
+        hintText.text = victory ? "The area is safe. Well done, survivor."
+                                 : "The dead got you. Try again.";
         scoreText.SetText("Score: 0 / {0}", target);
     }
 
@@ -29,6 +31,7 @@ public class OverScreen : MonoBehaviour
         Tween.Fade(this, dim, 1f, 0.30f, Ease.OutQuad);
         Tween.Fade(this, panelGroup, 1f, 0.30f, Ease.OutQuad);
 
+        // Victory rises with a bounce; defeat sinks slowly and heavily.
         Vector2 start = victory ? new Vector2(0, -150) : new Vector2(0, 150);
         Func<float, float> ease;
         if (victory) ease = Ease.OutBack; else ease = Ease.InOutQuad;
@@ -38,7 +41,7 @@ public class OverScreen : MonoBehaviour
         title.transform.localScale = Vector3.one * 0.6f;
         Tween.Scale(this, title.transform, 1f, 0.40f, Ease.OutBack, 0.25f);
 
-        Tween.Run(this, 0.8f, Ease.OutCubic,
+        Tween.Run(this, 0.8f, Ease.OutCubic,                  // score counts up
             t => scoreText.SetText("Score: {0} / {1}", Mathf.RoundToInt(score * t), target),
             null, 0.35f);
     }
