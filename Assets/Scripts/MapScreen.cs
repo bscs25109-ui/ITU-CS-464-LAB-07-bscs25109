@@ -42,8 +42,8 @@ public class MapScreen : MonoBehaviour
 
         GameSession.Mission = mission;
 
-        info.text = "Mission " + mission +
-            ": " + missionNames[mission - 1];
+        info.text = "Mission " + mission + ": "
+            + missionNames[mission - 1];
 
         CanvasGroup g = Tween.Group(info.transform);
 
